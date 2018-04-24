@@ -1,8 +1,10 @@
 ﻿<h2>AGL Test</h2>
 </br>
 <label> Press below button to get the JSon Result</label>
-<button id="btnFetchJson">Get Json</button>
-<div>
+</br>
+<button type="button" id ="btnFetchJson" class="btn btn-primary">Get Cats by Gender</button>
+</br>
+<div id ="catspanelId" style="display: none">
     <label>Male</label>
     <div class="malecats"></div>
     </br>
@@ -15,6 +17,7 @@
     $(document).ready(function () {
 
         $('#btnFetchJson').click(function () {
+            
             debugger;
             
             $.ajax({
@@ -23,9 +26,41 @@
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (result) {
+                    var malecats = "";
+                    var femalecats = "";
                     $.each(result, function (item, element) {
                         debugger;
-                        $('.malecats').html(element.gender);
+                        if (element.gender == "Male") {
+                            var pets = element.pets;
+                            debugger;
+                            if (pets != null) {
+                                $.each(pets,
+                                    function(i, pet) {
+                                        debugger;
+                                        if (pet.type == "Cat") {
+                                            malecats += "<li>" + pet.name + "</li>";
+                                        }
+
+                                    });
+                            }
+                        } else {
+                            var pets = element.pets;
+                            debugger;
+                            if (pets != null) {
+                                $.each(pets,
+                                    function (i, pet) {
+                                        debugger;
+                                        if (pet.type == "Cat") {
+                                            femalecats += "<li>" + pet.name + "</li>";
+                                        }
+
+                                    });
+                            }
+                        }
+
+                        $('.malecats').html(malecats);
+                        $('.femalecats').html(femalecats);
+                        $('#catspanelId').show();
                     });
                 },
                 error: function (response) {

@@ -5,11 +5,9 @@ using System.Web;
 
 namespace ReadJsonAGL.Helpers
 {
-    public class OwnersandPets
+    public class Pet
     {
         public string name { get; set; }
-        public string gender { get; set; }
-        public int age { get; set; }
-        public IEnumerable<Pet> pets { get; set; }
+        public string type { get; set; }
     }
 }

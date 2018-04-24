@@ -32,12 +32,12 @@ namespace ReadJsonAGL.Controllers
             }
 
             var AllJsonList = JsonConvert.DeserializeObject<List<OwnersandPets>>(JSonData);
-           // maleOwners = AllJsonList.Where(x => x.gender == "male").ToList();
+            //maleOwners = AllJsonList.Where(x => x.gender == "Male");
 
             //maleownerpets = maleOwners.Select(y => y.pets).ToList();
-                //catsWithMaleOwnersList =maleownerpets.Select()
+               // catsWithMaleOwnersList =maleownerpets.Select()
             //return "test";
-                return Json(AllJsonList,JsonRequestBehavior.AllowGet) ;
+                return Json(AllJsonList, JsonRequestBehavior.AllowGet) ;
             }
         }
         //
