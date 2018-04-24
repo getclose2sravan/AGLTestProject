@@ -14,11 +14,11 @@ namespace ReadJsonAGL.Controllers
     public class JSonController : Controller
     {
         [System.Web.Mvc.HttpGet]
-        public JsonResult GetCats()
+        public ActionResult GetCats()
         {
-            IEnumerable<OwnersandPets> maleOwners = new List<OwnersandPets>();
-            IEnumerable<Pet> maleownerpets = new List<Pet>();
-            IEnumerable<string> catsWithMaleOwnersList = new List<string>();
+            //IEnumerable<OwnersandPets> maleOwners = new List<OwnersandPets>();
+            //IEnumerable<Pet> maleownerpets = new List<Pet>();
+            //IEnumerable<string> catsWithMaleOwnersList = new List<string>();
             using(var w = new WebClient()){
             var jsonurl = "http://agl-developer-test.azurewebsites.net/people.json";
             var JSonData = string.Empty;
@@ -32,12 +32,12 @@ namespace ReadJsonAGL.Controllers
             }
 
             var AllJsonList = JsonConvert.DeserializeObject<List<OwnersandPets>>(JSonData);
-            maleOwners = AllJsonList.Where(x => x.gender == "male").ToList();
+           // maleOwners = AllJsonList.Where(x => x.gender == "male").ToList();
 
             //maleownerpets = maleOwners.Select(y => y.pets).ToList();
                 //catsWithMaleOwnersList =maleownerpets.Select()
-
-            return Json(maleOwners,JsonRequestBehavior.AllowGet) ;
+            //return "test";
+                return Json(AllJsonList,JsonRequestBehavior.AllowGet) ;
             }
         }
         //
