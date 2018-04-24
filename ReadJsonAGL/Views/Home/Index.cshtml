@@ -1,0 +1,46 @@
+﻿<h2>AGL Test</h2>
+</br>
+<label> Press below button to get the JSon Result</label>
+<button id="btnFetchJson">Get Json</button>
+<div>
+    <label>Male</label>
+    <div class="malecats"></div>
+    </br>
+
+    <label>Female</label>
+    <div class="femalecats"></div>
+</div>
+<script src="~/scripts/jquery-1.10.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#btnFetchJson').click(function () {
+            debugger;
+            
+            $.ajax({
+                type: "GET",
+                url: "../controllers/jsoncontroller/GetCats",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $.each(result, function (item, element) {
+                        debugger;
+                        $('.malecats').html(element.gender);
+                    });
+                },
+                error: function (response) {
+                    debugger;
+                    alert('eror');
+                }
+            });
+
+            //$.get("/controllers/jsoncontroller/GetCats", function (data, status) {
+            //    $.each(data, function (item, element) {
+            //        debugger;
+            //        $('.malecats').html(element.gender);
+            //    });
+
+            //});
+        });
+    });
+</script>
